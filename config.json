@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "features": ["attendance", "assignments", "internals", "extra_activities", "previous_gpa"],
   "ranges": {
@@ -8,3 +9,15 @@
     "previous_gpa": [0, 10]
   }
 }
+=======
+{
+  "features": ["attendance", "assignments", "internals", "extra_activities", "previous_gpa"],
+  "ranges": {
+    "attendance": [0, 100],
+    "assignments": [0, 100],
+    "internals": [0, 100],
+    "extra_activities": [0, 10],
+    "previous_gpa": [0, 10]
+  }
+}
+>>>>>>> 91485da (Initial commit)

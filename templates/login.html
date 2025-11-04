@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Login - ML-Based Student Performance Predictor</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f9f9f9;}
+        .banner { background: #1886da; color: #fff; text-align: center; padding: 20px 0 13px 0; font-size:2.1em; font-weight: bold; margin-bottom:34px;}
+        .loginbox { max-width:340px; margin:auto; background:#fff; padding:28px 30px 18px 30px; border-radius:11px; box-shadow: 0 0 9px #ccc; display:flex; flex-direction:column; align-items:center; }
+        input[type="text"], input[type="password"] {width:100%;padding:9px;margin-bottom:16px;border-radius:6px;border:1px solid #bbb;font-size:1.1em;box-sizing:border-box;background:#ecf3fa;}
+        .login-btn { width:100%;background:#1886da;color:#fff;font-size:1.1em;border:none;border-radius:6px;padding:10px 0;cursor:pointer;margin-top:6px;}
+        .login-btn:hover { background: #135fa2; }
+        .error { color: red; margin-bottom: 15px;}
+    </style>
+</head>
+<body>
+    <div class="banner">ML-Based Student Performance Predictor</div>
+    <div class="loginbox">
+      <form method="POST">
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="error">
+                  {% for message in messages %}
+                    {{ message }}
+                  {% endfor %}
+                </div>
+            {% endif %}
+          {% endwith %}
+          <input type="text" name="username" placeholder="Username (student/teacher/admin)" required><br/>
+          <input type="password" name="password" placeholder="Password" required><br/>
+          <button class="login-btn" type="submit">Log In</button>
+      </form>
+    </div>
+</body>
+</html>
