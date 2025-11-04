@@ -1,4 +1,5 @@
 
+
 {
   "features": ["attendance", "assignments", "internals", "extra_activities", "previous_gpa"],
   "ranges": {
@@ -9,4 +10,6 @@
     "previous_gpa": [0, 10]
   }
 }
+
+
 

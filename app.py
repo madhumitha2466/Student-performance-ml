@@ -57,8 +57,13 @@ def logout():
     return redirect(url_for('login'))
 
 # ---------------------- Models load ----------------------
-clf = joblib.load("static/dropout_model.pkl")   # Logistic Regression
-reg = joblib.load("static/grade_model.pkl")     # Random Forest
+try:
+    clf = joblib.load("static/dropout_model.pkl")   # Logistic Regression
+    reg = joblib.load("static/grade_model.pkl")     # Random Forest
+except Exception as e:
+    clf = None
+    reg = None
+    print(f"⚠️ Model loading failed: {e}")
 
 # ---------------------- Helpers ----------------------
 def grade_letter(x):
@@ -97,8 +102,8 @@ def index():
             return redirect(url_for('index'))
 
         # Prediction
-        arr = np.array(vals).reshape(1, -1)
         try:
+            arr = np.array(vals).reshape(1, -1)
             dropout_prob = clf.predict_proba(arr)[0][1]  # Logistic Regression
             grade_pred = reg.predict(arr)[0]
             importances = np.abs(clf.coef_).flatten().tolist()
@@ -128,4 +133,6 @@ def results():
 
 # ---------------------- Main ----------------------
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    # The correct way to support both local & cloud deployment
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)
